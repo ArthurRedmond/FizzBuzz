@@ -68,10 +68,10 @@
                         <h5>Enter Values</h5>
                         <form class="row gy-2 gx-3">
                             <div class="col">
-                                <input id="fizzNumber" type="number" class="form-control" placeholder="Fizz">
+                                <input id="fizzNumber" type="number" class="form-control" placeholder="Fizz e.g. 3">
                             </div>
                             <div class="col">
-                                <input id="buzzNumber" type="number" class="form-control" placeholder="Buzz">
+                                <input id="buzzNumber" type="number" class="form-control" placeholder="Buzz e.g. 5">
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button id="btnSubmit" type="button" class="btn btn-dark btn-lg">Let er Rip!</button>
@@ -121,6 +121,9 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="/js/site.js">
+    </script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getValues)
     </script>
 </body>
 
