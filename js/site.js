@@ -1,52 +1,51 @@
 function getValues() {
-    let fizzNumber = document.getElementById("fizzNumber").value;
-    let buzzNumber = document.getElementById("buzzNumber").value;
+    let fizzValue = document.getElementById("fizzValue").value;
+    let buzzValue = document.getElementById("buzzValue").value;
 
-    fizzNumber = parseInt(fizzNumber);
-    buzzNumber = parseInt(buzzNumber);
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
 
-    let numbers = generateNumbers(fizzNumber, buzzNumber);
-    displayResults(numbers);
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+        let fbArray = fizzBuzz(fizzValue, buzzValue);
+        displayResults(fbArray);
+    } else {
+        alert("You must enter integers")
+    }
 }
 
-function generateNumbers(fizzNumber, buzzNumber) {
-    let numbers = [];
+function fizzBuzz(fizzValue, buzzValue) {
+    let returnArray = [];
 
     for (let i = 1; i <= 100; i++) {
-        if (i % fizzNumber == 0 && i % buzzNumber == 0) {
-            numbers.push("FIZZBUZZ");
-        } else if (i % fizzNumber == 0) {
-            numbers.push("FIZZ");
-        } else if (i % buzzNumber == 0) {
-            numbers.push("BUZZ");
+        if (i % fizzValue == 0 && i % buzzValue == 0) {
+            returnArray.push("FizzBuzz");
+        } else if (i % fizzValue == 0) {
+            returnArray.push("Fizz");
+        } else if (i % buzzValue == 0) {
+            returnArray.push("Buzz");
         } else {
-            numbers.push(i);
+            returnArray.push(i);
         }
     }
-    return numbers;
+    return returnArray;
 }
 
-function displayResults(numbers) {
-    let templateRows = "";
+function displayResults(fbArray) {
+    //Get the table body element
+    let tableBody = document.getElementById("results");
 
-    for (let i = 0; i < numbers.length; i++) {
-        let number = numbers[i];
-        templateRows += `<tr><td>${number}</td></tr>`
+    //Get the template row
+    let templateRow = document.getElementById("fbTemplate");
+
+    //clear the table
+    tableBody.innerHTML = "";
+
+    for (let index = 0; index < fbArray.length; index++) {
+
+        let tableRow = document.importNode(templateRow.content, true);
+
+        let rowCols = tableRow.querySelectorAll("td");
+        
     }
-    document.getElementById("results").innerHTML = templateRows;
+
 }
-// From Hundreds
-// function displayNumbers(numbers) {
-//     let templateRows = "";
-//     let className = "";
-//     for (let i = 0; i < numbers.length; i++) {
-//         let number = numbers[i];
-//         if (number % 2 == 0) {
-//             className = "even";
-//         } else {
-//             className = "odd";
-//         }
-//         templateRows += `<tr><td class="${className}">${number}</td></tr>`
-//     }
-//     document.getElementById("results").innerHTML = templateRows;
-// }
