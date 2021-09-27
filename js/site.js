@@ -40,12 +40,19 @@ function displayResults(fbArray) {
     //clear the table
     tableBody.innerHTML = "";
 
-    for (let index = 0; index < fbArray.length; index++) {
+    for (let index = 0; index < fbArray.length; index += 5) {
 
         let tableRow = document.importNode(templateRow.content, true);
 
         let rowCols = tableRow.querySelectorAll("td");
-        
+        rowCols[0].textContent = fbArray[index];
+        rowCols[1].textContent = fbArray[index + 1];
+        rowCols[2].textContent = fbArray[index + 2];
+        rowCols[3].textContent = fbArray[index + 3];
+        rowCols[4].textContent = fbArray[index + 4];
+
+        tableBody.appendChild(tableRow);
+
     }
 
 }
