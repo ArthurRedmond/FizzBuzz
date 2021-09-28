@@ -57,17 +57,89 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //Call HelloWorld 
-                        function HelloWorld() {
-                            alert("Hello World");
+                        function getValues() {
+                            let fizzValue = document.getElementById("fizzValue").value;
+                            let buzzValue = document.getElementById("buzzValue").value;
+                        
+                            fizzValue = parseInt(fizzValue);
+                            buzzValue = parseInt(buzzValue);
+                        
+                            if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                                let fbArray = fizzBuzz(fizzValue, buzzValue);
+                                displayResults(fbArray);
+                            } else {
+                                alert("You must enter integers")
+                            }
+                        }
+                        
+                        function fizzBuzz(fizzValue, buzzValue) {
+                            let returnArray = [];
+                        
+                            for (let i = 1; i <= 100; i++) {
+                                let value = ((i % fizzValue == 0 ? 'Fizz' : '') + (i % buzzValue == 0 ? 'Buzz' : '') || i);
+                                returnArray.push(value);
+                            }
+                            return returnArray;
+                        }
+                        
+                        function displayResults(fbArray) {
+                            //Get the table body element
+                            let tableBody = document.getElementById("results");
+                        
+                            //Get the template row
+                            let templateRow = document.getElementById("fbTemplate");
+                        
+                            //clear the table
+                            tableBody.innerHTML = "";
+                        
+                            for (let index = 0; index < fbArray.length; index += 5) {
+                        
+                                let tableRow = document.importNode(templateRow.content, true);
+                        
+                                let rowCols = tableRow.querySelectorAll("td");
+                        
+                                rowCols[0].classList.add(fbArray[index]);
+                                rowCols[0].textContent = fbArray[index];
+                        
+                                rowCols[1].classList.add(fbArray[index + 1]);
+                                rowCols[1].textContent = fbArray[index + 1];
+                        
+                                rowCols[2].classList.add(fbArray[index + 2]);
+                                rowCols[2].textContent = fbArray[index + 2];
+                        
+                                rowCols[3].classList.add(fbArray[index + 3]);
+                                rowCols[3].textContent = fbArray[index + 3];
+                        
+                                rowCols[4].classList.add(fbArray[index + 4]);
+                                rowCols[4].textContent = fbArray[index + 4];
+                        
+                                tableBody.appendChild(tableRow);
+                            }
                         }
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
                     <p>The Code is structed in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h5>getValues()</h5>
+                    <p>This function declares two variable for the entered 'Fizz' and 'Buzz' values then parses them to
+                        ensure they're valid integers. If so, an array is created to hold the return from the fizzBuzz
+                        function with the passed values created earlier. This array is finally passed to the
+                        displayResults function.</p>
+
+                    <h5>fizzBuzz()</h5>
+                    <p>This function receives as its parameters the variables declared in the getValues function. It
+                        declares a return array and using a for loop increments from 1 to 100, checking if the number is
+                        divisible by the fizz or buzz value using a ternary operator. The ternary operator checks a
+                        condition and if it is true it will execute the first expression, if false the expression after
+                        the colon. This value is appended to the end of the array which is returned.</p>
+
+                    <h5>displayResults()</h5>
+                    <p>This function receives an array with 100 values. It declares a table variable and gets the table
+                        element from page. It declares a row variable for the selected template from within the page. It
+                        ensures the table is clear then loops through the array, five indexes at a time. It imports the
+                        snippet from the template and adds the value from array index to both the element's class as
+                        well as contents then appends that to the table.</p>
                 </div>
             </div>
         </div>

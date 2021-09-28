@@ -56,5 +56,4 @@ function displayResults(fbArray) {
 
         tableBody.appendChild(tableRow);
     }
-
 }
